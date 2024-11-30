@@ -6,6 +6,7 @@ public class Set<TKey, TValue>
     private Dictionary<TKey, TValue> _dictionary;
     private readonly IReplacementPolicy<TKey> _replacementPolicy;
     private int _capacity;
+    private object _lockObject = new();
 
     public Set(int capacity, IReplacementPolicy<TKey> replacementPolicy)
     {
@@ -16,32 +17,39 @@ public class Set<TKey, TValue>
     
     public void Put(TKey key, TValue value)
     {
-        if (_dictionary.ContainsKey(key))
+        lock (_lockObject)
         {
-            _dictionary[key] = value;
-            _replacementPolicy.RecordAccess(key);
-        }
-        else
-        {
-            if (_dictionary.Count >= _capacity)
+            if (_dictionary.ContainsKey(key))
             {
-                var victim = _replacementPolicy.SelectVictim();
-                _dictionary.Remove(victim);
-                _replacementPolicy.Remove(victim);
+                _dictionary[key] = value;
+                _replacementPolicy.RecordAccess(key);
             }
+            else
+            {
+                if (_dictionary.Count >= _capacity)
+                {
+                    var victim = _replacementPolicy.SelectVictim();
+                    _dictionary.Remove(victim);
+                    _replacementPolicy.Remove(victim);
+                }
 
-            _dictionary[key] = value;
-            _replacementPolicy.Add(key);
+                _dictionary[key] = value;
+                _replacementPolicy.Add(key);
+            }
         }
     }
 
     public TValue Get(TKey key)
     {
-        if (_dictionary.TryGetValue(key, out var value))
+        lock (_lockObject)
         {
-            _replacementPolicy.RecordAccess(key);
-            return value;
+            if (_dictionary.TryGetValue(key, out var value))
+            {
+                _replacementPolicy.RecordAccess(key);
+                return value;
+            }
+
+            throw new KeyNotFoundException();
         }
-        throw new KeyNotFoundException();
     }
 }
