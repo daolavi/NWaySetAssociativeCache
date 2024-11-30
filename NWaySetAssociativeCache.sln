@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F5752677-25E8-4838-BAFF-221356EF0D54}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{07CF4DF7-846E-4445-8DE3-2D6EB833F323}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NWaySetAssociativeCache.Core", "src\NWaySetAssociativeCache.Core\NWaySetAssociativeCache.Core.csproj", "{C04EB31D-8EF0-4864-A363-5C80B2A38393}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NWaySetAssociativeCache.Core.Unit.Tests", "tests\NWaySetAssociativeCache.Core.Unit.Tests\NWaySetAssociativeCache.Core.Unit.Tests.csproj", "{6DCF9725-A850-4F9B-ADC3-C5821C4806AC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C04EB31D-8EF0-4864-A363-5C80B2A38393}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C04EB31D-8EF0-4864-A363-5C80B2A38393}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C04EB31D-8EF0-4864-A363-5C80B2A38393}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C04EB31D-8EF0-4864-A363-5C80B2A38393}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6DCF9725-A850-4F9B-ADC3-C5821C4806AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DCF9725-A850-4F9B-ADC3-C5821C4806AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DCF9725-A850-4F9B-ADC3-C5821C4806AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DCF9725-A850-4F9B-ADC3-C5821C4806AC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C04EB31D-8EF0-4864-A363-5C80B2A38393} = {F5752677-25E8-4838-BAFF-221356EF0D54}
+		{6DCF9725-A850-4F9B-ADC3-C5821C4806AC} = {07CF4DF7-846E-4445-8DE3-2D6EB833F323}
+	EndGlobalSection
+EndGlobal
