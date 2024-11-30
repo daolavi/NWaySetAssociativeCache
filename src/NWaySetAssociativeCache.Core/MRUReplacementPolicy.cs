@@ -1,14 +1,14 @@
 namespace NWaySetAssociativeCache.Core;
 
-public class LRUReplacementPolicy<TKey> : IReplacementPolicy<TKey> where TKey : notnull
+public class MRUReplacementPolicy<TKey> : IReplacementPolicy<TKey> where TKey : notnull
 {
     private LinkedList<TKey> _list;
 
-    public LRUReplacementPolicy()
+    public MRUReplacementPolicy()
     {
         _list = [];
     }
-
+    
     public void RecordAccess(TKey key)
     {
         if (_list.Contains(key))
@@ -22,9 +22,9 @@ public class LRUReplacementPolicy<TKey> : IReplacementPolicy<TKey> where TKey : 
     {
         if (_list.Count == 0)
         {
-            throw new InvalidOperationException("No items found");
+            throw new InvalidOperationException("No item found");
         }
-        return _list.Last.Value;
+        return _list.First.Value;
     }
 
     public void Add(TKey key)

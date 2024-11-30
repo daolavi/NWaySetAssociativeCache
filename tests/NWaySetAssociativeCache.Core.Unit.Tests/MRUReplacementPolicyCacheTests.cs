@@ -1,14 +1,14 @@
 namespace NWaySetAssociativeCache.Core.Unit.Tests;
 
 [TestFixture]
-public class LRUReplacementPolicyCacheTests
+public class MRUReplacementPolicyCacheTests
 {
     private NWaySetAssociativeCache<int, string> _sut;
     
     [SetUp]
     public void Setup()
     {
-        _sut = new NWaySetAssociativeCache<int, string>(1, 3, new LRUReplacementPolicy<int>());
+        _sut = new NWaySetAssociativeCache<int, string>(1, 3, new MRUReplacementPolicy<int>());
     }
 
     [Test]
@@ -34,13 +34,13 @@ public class LRUReplacementPolicyCacheTests
         _sut.Put(3, "c");
         _sut.Put(4, "d");
         
-        Assert.Throws<KeyNotFoundException>(() => _sut.Get(1));
+        Assert.Throws<KeyNotFoundException>(() => _sut.Get(3));
         Assert.That(_sut.Get(4), Is.EqualTo("d"));
-        Assert.That(_sut.Get(3), Is.EqualTo("c"));
         Assert.That(_sut.Get(2), Is.EqualTo("b"));
-        
+        Assert.That(_sut.Get(1), Is.EqualTo("a"));
+
         _sut.Put(5, "e");
-        Assert.Throws<KeyNotFoundException>(() => _sut.Get(4));
+        Assert.Throws<KeyNotFoundException>(() => _sut.Get(1));
         Assert.That(_sut.Get(5), Is.EqualTo("e"));
     }
 }
