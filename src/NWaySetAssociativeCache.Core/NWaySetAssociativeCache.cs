@@ -7,14 +7,14 @@ public class NWaySetAssociativeCache<TKey, TValue>
     private int _setCapacity;
     private List<Set<TKey, TValue>> _sets;
 
-    public NWaySetAssociativeCache(int numberOfSets, int setCapacity, IReplacementPolicy<TKey> replacementPolicy)
+    public NWaySetAssociativeCache(int numberOfSets, int setCapacity, Func<IReplacementPolicy<TKey>> replacementPolicyFactory)
     {
         _numberOfSets = numberOfSets;
         _setCapacity = setCapacity;
         _sets = new List<Set<TKey, TValue>>(numberOfSets);
         for (var i = 0; i < numberOfSets; i++)
         {
-            _sets.Add(new Set<TKey, TValue>(_setCapacity, replacementPolicy));
+            _sets.Add(new Set<TKey, TValue>(_setCapacity, replacementPolicyFactory()));
         }
     }
 

@@ -8,7 +8,7 @@ public class TTLReplacementPolicyCacheTests
     [SetUp]
     public void SetUp()
     {
-        _sut = new NWaySetAssociativeCache<int, string>(1, 3, new TTLReplacementPolicy<int>(new TimeSpan(0, 0, 5)));
+        _sut = new NWaySetAssociativeCache<int, string>(1, 3, () => new TTLReplacementPolicy<int>(new TimeSpan(0, 0, 5)));
     }
     
     [Test]

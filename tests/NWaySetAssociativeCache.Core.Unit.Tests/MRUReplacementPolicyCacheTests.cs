@@ -8,7 +8,7 @@ public class MRUReplacementPolicyCacheTests
     [SetUp]
     public void Setup()
     {
-        _sut = new NWaySetAssociativeCache<int, string>(1, 3, new MRUReplacementPolicy<int>());
+        _sut = new NWaySetAssociativeCache<int, string>(1, 3, () => new MRUReplacementPolicy<int>());
     }
 
     [Test]

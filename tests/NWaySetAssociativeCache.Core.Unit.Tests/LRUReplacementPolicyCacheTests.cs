@@ -8,7 +8,7 @@ public class LRUReplacementPolicyCacheTests
     [SetUp]
     public void Setup()
     {
-        _sut = new NWaySetAssociativeCache<int, string>(1, 3, new LRUReplacementPolicy<int>());
+        _sut = new NWaySetAssociativeCache<int, string>(1, 3, () => new LRUReplacementPolicy<int>());
     }
 
     [Test]
